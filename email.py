@@ -4,7 +4,8 @@ This is a script that prompts the user to enter email addresses which adds them 
 a list and prints the list.
 
 """
-
+import requests
+from requests.auth import BearerToken
 
 addresses = []
 
@@ -24,3 +25,12 @@ while more == "y":
             more = input("Please enter a y or n: ")
 #prints email addresses    
 print(addresses)
+
+URL ="https://webexapis.com/v1/memberships"
+headers = {'Content-Type': 'application/json'}
+response = requests.post(URL, auth=BearerToken, headers=headers, verify=False)
+
+#converts our respone to json format and stores it in our variable resposneJSON
+
+token = response.json()['NTg1M2VlMzgtMWMzZS00NDJiLWE4YWEtYTg2MGMwMjAxYmZmNDk5NjFlNTQtNmY3_PF84_7fe15fed-c67b-4ddc-b29c-39338b4d309e']
+
